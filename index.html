@@ -3,192 +3,39 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Loopcast — a growth marketer that runs as a daily loop</title>
-<meta name="description" content="Loopcast turns your app's own footage into Shorts and Reels every day, posts them through official APIs, reads the numbers and rewrites its own rules. Case study: Maozai, 7,110 views in 6 days with $0 on ads.">
+<title>Loopcast — AI marketer that runs your app's social accounts</title>
+<meta name="description" content="An AI agent for app teams with no marketer: it turns your app's footage into daily Shorts and Reels, posts via official APIs and learns what drives installs.">
 <link rel="canonical" href="https://loopcast.dev/">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Loopcast">
 <meta property="og:url" content="https://loopcast.dev/">
-<meta property="og:title" content="Loopcast — a growth marketer that runs as a daily loop">
+<meta property="og:title" content="Loopcast — AI marketer that runs your app's social accounts">
 <meta property="og:description" content="Post, read the numbers, rewrite the rules, post again. Case study: Maozai, 7,110 views in 6 days with $0 on ads.">
 <meta property="og:image" content="https://loopcast.dev/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Loopcast — AI marketer that runs your app's social accounts">
+<meta name="twitter:description" content="An AI agent for app teams with no marketer: it turns your app's footage into daily Shorts and Reels, posts via official APIs and learns what drives installs.">
 <meta name="twitter:image" content="https://loopcast.dev/og.png">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#121315">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#121315;--panel:#1A1C1F;--panel2:#202327;--line:#2A2D31;--ink:#F2F0EA;--body:#A9A69E;--soft:#76736C;--green:#7BE38F;--amber:#FFB454;--red:#FF7A6B;--blue:#8DB8FF}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{background:var(--bg);color:var(--ink);font-family:"Space Grotesk",system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden}
-.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
-a{color:inherit}
-.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
-nav{display:flex;justify-content:space-between;align-items:center;padding:22px 0;font-size:15px}
-.logo{font-weight:700;font-size:20px;display:flex;align-items:center;gap:10px;text-decoration:none}
-.logo i{width:12px;height:12px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green)}
-nav .links a{color:var(--body);text-decoration:none;margin-left:22px}
-nav .links a:hover{color:var(--ink)}
-nav .links a.cta{color:var(--green)}
-
-/* hero */
-.hero{display:grid;grid-template-columns:1fr 1.05fr;gap:48px;align-items:center;padding:48px 0 72px}
-.eyebrow{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--soft);margin-bottom:18px}
-h1{font-size:60px;line-height:1.02;letter-spacing:-.03em;font-weight:700}
-h1 span{color:var(--green)}
-.lede{color:var(--body);font-size:19px;margin:22px 0 30px;max-width:500px}
-.quick{display:flex;gap:8px;max-width:470px}
-input,select{padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-radius:10px;color:var(--ink);font:inherit;font-size:16px;width:100%}
-input:focus,select:focus{outline:2px solid var(--green);outline-offset:1px;border-color:transparent}
-.quick input{flex:1}
-button{padding:14px 20px;border:0;border-radius:10px;background:var(--green);color:#0B1A0F;font:inherit;font-weight:700;font-size:15px;cursor:pointer;white-space:nowrap}
-button:hover{filter:brightness(1.08)}
-.fine{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--soft);margin-top:12px}
-
-.term{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;font-family:"JetBrains Mono",monospace;font-size:13.5px;min-width:0}
-.bar{display:flex;gap:7px;padding:12px 14px;border-bottom:1px solid var(--line);align-items:center;color:var(--soft);font-size:12px}
-.bar i{width:10px;height:10px;border-radius:50%;background:#3A3D42;flex:none}
-.bar span{margin-left:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.log{padding:16px 18px;line-height:1.85;min-height:330px}
-.log>div{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.log>div.hide{visibility:hidden}
-.t{color:var(--soft)}.g{color:var(--green)}.a{color:var(--amber)}.r{color:var(--red)}.w{color:var(--ink)}.b{color:var(--blue)}
-.rulebox{margin:6px 0 4px;padding:10px 12px;border-left:2px solid var(--amber);background:rgba(255,180,84,.07);white-space:normal!important;line-height:1.6}
-.cursor{display:inline-block;width:8px;height:15px;background:var(--green);vertical-align:-2px;animation:blink 1s steps(1) infinite}
-@keyframes blink{50%{opacity:0}}
-@media(prefers-reduced-motion:reduce){.cursor{animation:none}}
-
-/* sections */
-section.block{padding:72px 0;border-top:1px solid var(--line)}
-.label{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--green);margin-bottom:12px}
-h2{font-size:40px;line-height:1.08;letter-spacing:-.02em;font-weight:700;max-width:760px}
-.sub{color:var(--body);font-size:17px;max-width:680px;margin-top:14px}
-
-/* loop */
-.loop{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:36px}
-.step{background:var(--bg);padding:24px}
-.step .n{font-family:"JetBrains Mono",monospace;color:var(--green);font-size:13px;font-weight:600;display:flex;justify-content:space-between;gap:8px}
-.state{font-weight:400;font-size:11.5px;padding:2px 8px;border-radius:99px;white-space:nowrap}
-.state.ok{color:var(--green);background:rgba(123,227,143,.1)}
-.state.wip{color:var(--amber);background:rgba(255,180,84,.1)}
-.state.ask{color:var(--blue);background:rgba(141,184,255,.1)}
-.step h3{font-size:20px;margin:10px 0 6px}
-.step p{color:var(--body);font-size:14.5px}
-.legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--soft)}
-
-/* case */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
-.stat{background:var(--panel);border-radius:14px;padding:20px}
-.stat .v{font-size:38px;font-weight:700;letter-spacing:-.02em}
-.stat .k{color:var(--body);font-size:14px;margin-top:2px}
-.stat.warn .v{color:var(--amber)}
-.case{display:grid;grid-template-columns:1.3fr 1fr;gap:16px;margin-top:16px}
-.panel{background:var(--panel);border-radius:14px;padding:22px;min-width:0}
-.panel h4{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--soft);font-weight:400;margin-bottom:16px;display:flex;justify-content:space-between;gap:12px}
-.chart{display:grid;grid-template-columns:auto 1fr auto;gap:5px 10px;align-items:center;font-family:"JetBrains Mono",monospace;font-size:12px}
-.chart .nm{color:var(--body);white-space:nowrap}
-.chart .tr{height:10px;background:var(--panel2);border-radius:3px;overflow:hidden}
-.chart .tr i{display:block;height:100%;background:#3B3F45;border-radius:3px}
-.chart .hit .tr i{background:var(--green)}
-.chart .hit .nm,.chart .hit .vv{color:var(--ink)}
-.chart>div{display:contents}
-.chart .vv{color:var(--soft);text-align:right}
-.note{color:var(--body);font-size:14px;margin-top:16px}
-.vids{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.vid{position:relative;border-radius:12px;overflow:hidden;background:#F7F3EE;aspect-ratio:9/13}
-.vid video{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block}
-.vid span{position:absolute;left:8px;bottom:8px;background:rgba(18,19,21,.85);color:var(--green);font-family:"JetBrains Mono",monospace;font-size:12px;padding:4px 8px;border-radius:6px}
-.rules{margin-top:16px;display:grid;gap:10px}
-.rule{display:grid;grid-template-columns:110px 1fr 1.1fr;gap:18px;background:var(--panel);border-radius:12px;padding:16px 20px;align-items:start}
-.rule .d{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--amber)}
-.rule .txt{font-size:16px}
-.rule .ev{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--body)}
-.honest{margin-top:16px;border:1px solid rgba(255,180,84,.35);background:rgba(255,180,84,.05);border-radius:14px;padding:20px 22px}
-.honest b{color:var(--amber);font-family:"JetBrains Mono",monospace;font-size:13px;font-weight:600}
-.honest p{color:var(--body);margin-top:8px;font-size:15px}
-
-/* control */
-.tiers{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:36px}
-.tiers ul{list-style:none;margin-top:6px}
-.tiers li{padding:9px 0;border-bottom:1px solid var(--line);color:var(--ink);font-size:15.5px;display:flex;gap:10px}
-.tiers li:last-child{border:0}
-.tiers li::before{font-family:"JetBrains Mono",monospace;font-size:13px;padding-top:2px}
-.auto li::before{content:"auto";color:var(--green)}
-.yes li::before{content:"you ok";color:var(--blue)}
-.never{margin-top:16px;color:var(--body);font-size:15px}
-.never b{color:var(--red);font-family:"JetBrains Mono",monospace;font-weight:600;font-size:13px;margin-right:8px}
-
-/* pricing */
-.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
-.plan{background:var(--panel);border-radius:14px;padding:24px;display:flex;flex-direction:column}
-.plan.main{outline:1px solid var(--green)}
-.plan .nm{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--soft)}
-.plan .pr{font-size:40px;font-weight:700;margin:6px 0 2px;letter-spacing:-.02em}
-.plan .pr small{font-size:16px;color:var(--soft);font-weight:400}
-.plan .for{color:var(--body);font-size:14.5px;margin-bottom:14px}
-.plan ul{list-style:none;color:var(--ink);font-size:15px}
-.plan li{padding:6px 0 6px 18px;position:relative}
-.plan li::before{content:"›";position:absolute;left:2px;color:var(--green)}
-
-/* faq */
-.faq{margin-top:28px;display:grid;gap:10px;max-width:860px}
-details{background:var(--panel);border-radius:12px;padding:16px 20px}
-summary{cursor:pointer;font-weight:500;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:12px}
-summary::-webkit-details-marker{display:none}
-summary::after{content:"+";font-family:"JetBrains Mono",monospace;color:var(--green)}
-details[open] summary::after{content:"−"}
-details p{color:var(--body);margin-top:10px;font-size:15.5px}
-
-/* waitlist */
-.join{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
-.form{background:var(--panel);border-radius:14px;padding:24px;display:grid;gap:14px}
-.form label{display:grid;gap:6px;font-size:14px;color:var(--body)}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chips label{display:flex;align-items:center;gap:8px;background:var(--panel2);padding:9px 12px;border-radius:99px;font-size:14px;color:var(--ink);cursor:pointer}
-.chips input{width:auto;accent-color:var(--green)}
-.ok-msg{display:none;font-family:"JetBrains Mono",monospace;font-size:14px;color:var(--green);line-height:1.7}
-.form.done .fields{display:none}
-.form.done .ok-msg{display:block}
-.fields{display:grid;gap:14px}
-.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
-.err{color:var(--red);font-size:13px;min-height:1em}
-footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--soft);font-size:13.5px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-
-@media(max-width:960px){
- .loop{grid-template-columns:1fr 1fr}
- .case{grid-template-columns:1fr}
- .stats{grid-template-columns:1fr 1fr}
- .rule{grid-template-columns:1fr;gap:6px}
- .plans{grid-template-columns:1fr}
-}
-@media(max-width:760px){
- nav .links a:not(.cta){display:none}
- .hero{grid-template-columns:1fr;padding:16px 0 56px}
- h1{font-size:40px}
- h2{font-size:30px}
- .lede{font-size:17px}
- .quick{flex-direction:column}
- .term{font-size:11.5px}
- .log{padding:14px;min-height:0}
- .loop{grid-template-columns:1fr}
- .tiers{grid-template-columns:1fr}
- .join{grid-template-columns:1fr;gap:28px}
- section.block{padding:56px 0}
- .stat .v{font-size:30px}
-}
-</style>
+<!-- ld:start (generated) -->
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://loopcast.dev/#org", "name": "Loopcast", "url": "https://loopcast.dev/", "logo": "https://loopcast.dev/apple-touch-icon.png"}, {"@type": "WebSite", "@id": "https://loopcast.dev/#website", "name": "Loopcast", "url": "https://loopcast.dev/", "publisher": {"@id": "https://loopcast.dev/#org"}}, {"@type": "Service", "@id": "https://loopcast.dev/#service", "name": "Loopcast", "serviceType": "Social media marketing for mobile apps", "description": "An AI agent that runs a small app team's social accounts as a daily loop: it makes short videos from the app's own footage, posts them through official platform APIs, reads the numbers the next morning, and rewrites its own per-account rules.", "provider": {"@id": "https://loopcast.dev/#org"}, "url": "https://loopcast.dev/", "audience": {"@type": "BusinessAudience", "audienceType": "App teams with revenue and no marketer"}}, {"@type": "FAQPage", "@id": "https://loopcast.dev/#faq", "mainEntity": [{"@type": "Question", "name": "What is Loopcast?", "acceptedAnswer": {"@type": "Answer", "text": "Loopcast is an AI agent that runs a small app team's social media accounts as a daily loop. Every day it makes short videos from the app's own footage, posts them to YouTube Shorts, Instagram Reels and Threads, reads the numbers the next morning, and rewrites its own rules for that account based on what worked. It is built first for app teams that already have revenue but no marketer. Loopcast is a working name; it is not related to the podcast product at loopcast.ai or the audio app at loopcast.app."}}, {"@type": "Question", "name": "How is Loopcast different from a scheduler like Buffer or Later?", "acceptedAnswer": {"@type": "Answer", "text": "A scheduler posts content you bring and stops there. Loopcast makes the content from your app's footage, posts it, follows each post to your App Store page and downloads, and changes what it does tomorrow based on the result. Each account gets its own rules in plain words, with the evidence and date behind every rule, which you can read, edit or veto."}}, {"@type": "Question", "name": "What results has Loopcast had so far?", "acceptedAnswer": {"@type": "Answer", "text": "One case so far: Maozai, a solo developer's iPhone and Apple Watch virtual pet app, on brand-new accounts from October 20 to 26, 2026. The agent published about 60 posts and reached 7,110 views across YouTube, Instagram, X and Threads with $0 spent on ads. Four Shorts made 79% of the YouTube views. Those views turned into 14 first-time App Store downloads in the 30 days to October 24, so turning views into installs is not proven yet; that is what the pilots are for."}}, {"@type": "Question", "name": "Which platforms does Loopcast post to?", "acceptedAnswer": {"@type": "Answer", "text": "YouTube Shorts, Instagram Reels and Threads first, through their official publishing APIs. TikTok and X come next; TikTok's posting API requires an app review and X's API is paid."}}, {"@type": "Question", "name": "Does Loopcast need my passwords?", "acceptedAnswer": {"@type": "Answer", "text": "No. Every platform is connected through its official API or its own delegation, such as a YouTube channel manager role or Meta partner access. Loopcast never asks for a password and never logs in to your browser."}}, {"@type": "Question", "name": "What does Loopcast do on its own, and what needs my approval?", "acceptedAnswer": {"@type": "Answer", "text": "It makes videos from footage you have shared, publishes routine posts, reads the numbers, writes rules and sends a weekly report on its own. Replies and comments in your voice, direct messages, any ad spend and the first post in a new format wait for your yes."}}, {"@type": "Question", "name": "Is the content AI-generated, and is it labelled?", "acceptedAnswer": {"@type": "Answer", "text": "The videos are cut from your real app footage and screen recordings; Loopcast writes the captions. Anything AI-generated is labelled with each platform's AI disclosure setting, and music is original or cleared for commercial use, never a platform's licensed library."}}, {"@type": "Question", "name": "How much does Loopcast cost?", "acceptedAnswer": {"@type": "Answer", "text": "The first pilots are free: two weeks, two platforms, a daily log and a report at the end. Planned pricing is $49 a month for Starter (one app, two platforms, approve each post), $299 a month for Main (three to four platforms on autopilot, daily videos, daily rule updates, attribution to downloads and revenue), and $799 a month and up for Growth (several apps, creator collaborations, App Store work). Prices may change before launch."}}, {"@type": "Question", "name": "Is Loopcast available now?", "acceptedAnswer": {"@type": "Answer", "text": "Not generally yet. Five free pilots are open for app teams with revenue and no marketer; join the waitlist on loopcast.dev and the developer behind Maozai replies within a few days."}}]}]}</script>
+<!-- ld:end -->
+<link rel="stylesheet" href="/style.css">
 </head>
 <body>
 <div class="wrap">
 
 <nav>
  <a class="logo" href="#"><i></i>loopcast</a>
- <div class="links"><a href="#loop">How it works</a><a href="#maozai">Maozai log</a><a href="#pricing">Pricing</a><a href="#join" class="cta">Waitlist →</a></div>
+ <div class="links"><a href="#loop">How it works</a><a href="/maozai-case-study.html">Maozai case study</a><a href="#pricing">Pricing</a><a href="#join" class="cta">Waitlist →</a></div>
 </nav>
 
 <header class="hero">
@@ -268,6 +115,8 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--soft);fo
  <div class="honest">
   <b>// not proven yet</b>
   <p>Views did not turn into many installs: 14 first-time downloads and 70 store page views in the 30 days to Oct 24, and App Store Connect still says "not enough data" per campaign. Steps 04 and 05 above — matching store pages and per-clip attribution — are what the pilots are for.</p>
+ 
+  <p><a href="/maozai-case-study.html" style="color:var(--green)">Read the full case study: every Short, every rule, and what did not work →</a></p>
  </div>
 </section>
 
@@ -296,11 +145,17 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--soft);fo
  <div class="label">// questions</div>
  <h2>Before you join</h2>
  <div class="faq">
-  <details open><summary>What do I need to give you?</summary><p>Footage of your app (screen recordings, store screenshots, any clips you have), access to the accounts through each platform's own delegation, and read access to App Store Connect analytics. About 30 minutes to set up.</p></details>
-  <details><summary>Which platforms?</summary><p>YouTube Shorts, Instagram Reels and Threads first. TikTok and X come next; both need extra platform approval or paid API access.</p></details>
-  <details><summary>Will it make my account look like a bot?</summary><p>It posts at a human pace, only content made from your real product, with AI disclosure where a platform asks for it. Replies and messages wait for you.</p></details>
-  <details><summary>Is this only for apps?</summary><p>For now, yes: app teams with revenue and no marketer. The store-page and attribution steps are built around the App Store.</p></details>
-  <details><summary>What does the pilot cost?</summary><p>Nothing. Two weeks, two platforms, a daily log you can read, and a report at the end. If it's worth it, the Main plan is $299/month.</p></details>
+<!-- faq:start (generated by tools/build_site.py from content/site.json) -->
+  <details open><summary>What is Loopcast?</summary><p>Loopcast is an AI agent that runs a small app team&#x27;s social media accounts as a daily loop. Every day it makes short videos from the app&#x27;s own footage, posts them to YouTube Shorts, Instagram Reels and Threads, reads the numbers the next morning, and rewrites its own rules for that account based on what worked. It is built first for app teams that already have revenue but no marketer. Loopcast is a working name; it is not related to the podcast product at loopcast.ai or the audio app at loopcast.app.</p></details>
+  <details><summary>How is Loopcast different from a scheduler like Buffer or Later?</summary><p>A scheduler posts content you bring and stops there. Loopcast makes the content from your app&#x27;s footage, posts it, follows each post to your App Store page and downloads, and changes what it does tomorrow based on the result. Each account gets its own rules in plain words, with the evidence and date behind every rule, which you can read, edit or veto.</p></details>
+  <details><summary>What results has Loopcast had so far?</summary><p>One case so far: Maozai, a solo developer&#x27;s iPhone and Apple Watch virtual pet app, on brand-new accounts from October 20 to 26, 2026. The agent published about 60 posts and reached 7,110 views across YouTube, Instagram, X and Threads with $0 spent on ads. Four Shorts made 79% of the YouTube views. Those views turned into 14 first-time App Store downloads in the 30 days to October 24, so turning views into installs is not proven yet; that is what the pilots are for.</p></details>
+  <details><summary>Which platforms does Loopcast post to?</summary><p>YouTube Shorts, Instagram Reels and Threads first, through their official publishing APIs. TikTok and X come next; TikTok&#x27;s posting API requires an app review and X&#x27;s API is paid.</p></details>
+  <details><summary>Does Loopcast need my passwords?</summary><p>No. Every platform is connected through its official API or its own delegation, such as a YouTube channel manager role or Meta partner access. Loopcast never asks for a password and never logs in to your browser.</p></details>
+  <details><summary>What does Loopcast do on its own, and what needs my approval?</summary><p>It makes videos from footage you have shared, publishes routine posts, reads the numbers, writes rules and sends a weekly report on its own. Replies and comments in your voice, direct messages, any ad spend and the first post in a new format wait for your yes.</p></details>
+  <details><summary>Is the content AI-generated, and is it labelled?</summary><p>The videos are cut from your real app footage and screen recordings; Loopcast writes the captions. Anything AI-generated is labelled with each platform&#x27;s AI disclosure setting, and music is original or cleared for commercial use, never a platform&#x27;s licensed library.</p></details>
+  <details><summary>How much does Loopcast cost?</summary><p>The first pilots are free: two weeks, two platforms, a daily log and a report at the end. Planned pricing is $49 a month for Starter (one app, two platforms, approve each post), $299 a month for Main (three to four platforms on autopilot, daily videos, daily rule updates, attribution to downloads and revenue), and $799 a month and up for Growth (several apps, creator collaborations, App Store work). Prices may change before launch.</p></details>
+  <details><summary>Is Loopcast available now?</summary><p>Not generally yet. Five free pilots are open for app teams with revenue and no marketer; join the waitlist on loopcast.dev and the developer behind Maozai replies within a few days.</p></details>
+<!-- faq:end -->
  </div>
 </section>
 
@@ -327,7 +182,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--soft);fo
  </div>
 </section>
 
-<footer><span>Loopcast (working name) · built from the Maozai experiment</span><span class="mono">official APIs only · AI content labelled</span></footer>
+<footer><span>Loopcast (working name) · built from the Maozai experiment · <a href="/maozai-case-study.html">Maozai case study</a> · <a href="/llms.txt">llms.txt</a></span><span class="mono">official APIs only · AI content labelled</span></footer>
 </div>
 
 <script>
