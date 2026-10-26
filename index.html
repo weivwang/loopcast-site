@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loopcast — a growth marketer that runs as a daily loop</title>
+<meta name="description" content="Loopcast turns your app's own footage into Shorts and Reels every day, posts them through official APIs, reads the numbers and rewrites its own rules. Case study: Maozai, 7,110 views in 6 days with $0 on ads.">
+<link rel="canonical" href="https://loopcast.dev/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://loopcast.dev/">
+<meta property="og:title" content="Loopcast — a growth marketer that runs as a daily loop">
+<meta property="og:description" content="Post, read the numbers, rewrite the rules, post again. Case study: Maozai, 7,110 views in 6 days with $0 on ads.">
+<meta property="og:image" content="https://loopcast.dev/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://loopcast.dev/og.png">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#121315">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<!-- Analytics: add the Umami script here once a website id exists (same setup as pocketcat.app). -->
+<style>
+:root{--bg:#121315;--panel:#1A1C1F;--panel2:#202327;--line:#2A2D31;--ink:#F2F0EA;--body:#A9A69E;--soft:#76736C;--green:#7BE38F;--amber:#FFB454;--red:#FF7A6B;--blue:#8DB8FF}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--bg);color:var(--ink);font-family:"Space Grotesk",system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+a{color:inherit}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:22px 0;font-size:15px}
+.logo{font-weight:700;font-size:20px;display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo i{width:12px;height:12px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green)}
+nav .links a{color:var(--body);text-decoration:none;margin-left:22px}
+nav .links a:hover{color:var(--ink)}
+nav .links a.cta{color:var(--green)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1fr 1.05fr;gap:48px;align-items:center;padding:48px 0 72px}
+.eyebrow{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--soft);margin-bottom:18px}
+h1{font-size:60px;line-height:1.02;letter-spacing:-.03em;font-weight:700}
+h1 span{color:var(--green)}
+.lede{color:var(--body);font-size:19px;margin:22px 0 30px;max-width:500px}
+.quick{display:flex;gap:8px;max-width:470px}
+input,select{padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-radius:10px;color:var(--ink);font:inherit;font-size:16px;width:100%}
+input:focus,select:focus{outline:2px solid var(--green);outline-offset:1px;border-color:transparent}
+.quick input{flex:1}
+button{padding:14px 20px;border:0;border-radius:10px;background:var(--green);color:#0B1A0F;font:inherit;font-weight:700;font-size:15px;cursor:pointer;white-space:nowrap}
+button:hover{filter:brightness(1.08)}
+.fine{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--soft);margin-top:12px}
+
+.term{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;font-family:"JetBrains Mono",monospace;font-size:13.5px;min-width:0}
+.bar{display:flex;gap:7px;padding:12px 14px;border-bottom:1px solid var(--line);align-items:center;color:var(--soft);font-size:12px}
+.bar i{width:10px;height:10px;border-radius:50%;background:#3A3D42;flex:none}
+.bar span{margin-left:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.log{padding:16px 18px;line-height:1.85;min-height:330px}
+.log>div{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.log>div.hide{visibility:hidden}
+.t{color:var(--soft)}.g{color:var(--green)}.a{color:var(--amber)}.r{color:var(--red)}.w{color:var(--ink)}.b{color:var(--blue)}
+.rulebox{margin:6px 0 4px;padding:10px 12px;border-left:2px solid var(--amber);background:rgba(255,180,84,.07);white-space:normal!important;line-height:1.6}
+.cursor{display:inline-block;width:8px;height:15px;background:var(--green);vertical-align:-2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.cursor{animation:none}}
+
+/* sections */
+section.block{padding:72px 0;border-top:1px solid var(--line)}
+.label{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--green);margin-bottom:12px}
+h2{font-size:40px;line-height:1.08;letter-spacing:-.02em;font-weight:700;max-width:760px}
+.sub{color:var(--body);font-size:17px;max-width:680px;margin-top:14px}
+
+/* loop */
+.loop{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:36px}
+.step{background:var(--bg);padding:24px}
+.step .n{font-family:"JetBrains Mono",monospace;color:var(--green);font-size:13px;font-weight:600;display:flex;justify-content:space-between;gap:8px}
+.state{font-weight:400;font-size:11.5px;padding:2px 8px;border-radius:99px;white-space:nowrap}
+.state.ok{color:var(--green);background:rgba(123,227,143,.1)}
+.state.wip{color:var(--amber);background:rgba(255,180,84,.1)}
+.state.ask{color:var(--blue);background:rgba(141,184,255,.1)}
+.step h3{font-size:20px;margin:10px 0 6px}
+.step p{color:var(--body);font-size:14.5px}
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--soft)}
+
+/* case */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+.stat{background:var(--panel);border-radius:14px;padding:20px}
+.stat .v{font-size:38px;font-weight:700;letter-spacing:-.02em}
+.stat .k{color:var(--body);font-size:14px;margin-top:2px}
+.stat.warn .v{color:var(--amber)}
+.case{display:grid;grid-template-columns:1.3fr 1fr;gap:16px;margin-top:16px}
+.panel{background:var(--panel);border-radius:14px;padding:22px;min-width:0}
+.panel h4{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--soft);font-weight:400;margin-bottom:16px;display:flex;justify-content:space-between;gap:12px}
+.chart{display:grid;grid-template-columns:auto 1fr auto;gap:5px 10px;align-items:center;font-family:"JetBrains Mono",monospace;font-size:12px}
+.chart .nm{color:var(--body);white-space:nowrap}
+.chart .tr{height:10px;background:var(--panel2);border-radius:3px;overflow:hidden}
+.chart .tr i{display:block;height:100%;background:#3B3F45;border-radius:3px}
+.chart .hit .tr i{background:var(--green)}
+.chart .hit .nm,.chart .hit .vv{color:var(--ink)}
+.chart>div{display:contents}
+.chart .vv{color:var(--soft);text-align:right}
+.note{color:var(--body);font-size:14px;margin-top:16px}
+.vids{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.vid{position:relative;border-radius:12px;overflow:hidden;background:#F7F3EE;aspect-ratio:9/13}
+.vid video{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block}
+.vid span{position:absolute;left:8px;bottom:8px;background:rgba(18,19,21,.85);color:var(--green);font-family:"JetBrains Mono",monospace;font-size:12px;padding:4px 8px;border-radius:6px}
+.rules{margin-top:16px;display:grid;gap:10px}
+.rule{display:grid;grid-template-columns:110px 1fr 1.1fr;gap:18px;background:var(--panel);border-radius:12px;padding:16px 20px;align-items:start}
+.rule .d{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--amber)}
+.rule .txt{font-size:16px}
+.rule .ev{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--body)}
+.honest{margin-top:16px;border:1px solid rgba(255,180,84,.35);background:rgba(255,180,84,.05);border-radius:14px;padding:20px 22px}
+.honest b{color:var(--amber);font-family:"JetBrains Mono",monospace;font-size:13px;font-weight:600}
+.honest p{color:var(--body);margin-top:8px;font-size:15px}
+
+/* control */
+.tiers{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:36px}
+.tiers ul{list-style:none;margin-top:6px}
+.tiers li{padding:9px 0;border-bottom:1px solid var(--line);color:var(--ink);font-size:15.5px;display:flex;gap:10px}
+.tiers li:last-child{border:0}
+.tiers li::before{font-family:"JetBrains Mono",monospace;font-size:13px;padding-top:2px}
+.auto li::before{content:"auto";color:var(--green)}
+.yes li::before{content:"you ok";color:var(--blue)}
+.never{margin-top:16px;color:var(--body);font-size:15px}
+.never b{color:var(--red);font-family:"JetBrains Mono",monospace;font-weight:600;font-size:13px;margin-right:8px}
+
+/* pricing */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
+.plan{background:var(--panel);border-radius:14px;padding:24px;display:flex;flex-direction:column}
+.plan.main{outline:1px solid var(--green)}
+.plan .nm{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--soft)}
+.plan .pr{font-size:40px;font-weight:700;margin:6px 0 2px;letter-spacing:-.02em}
+.plan .pr small{font-size:16px;color:var(--soft);font-weight:400}
+.plan .for{color:var(--body);font-size:14.5px;margin-bottom:14px}
+.plan ul{list-style:none;color:var(--ink);font-size:15px}
+.plan li{padding:6px 0 6px 18px;position:relative}
+.plan li::before{content:"›";position:absolute;left:2px;color:var(--green)}
+
+/* faq */
+.faq{margin-top:28px;display:grid;gap:10px;max-width:860px}
+details{background:var(--panel);border-radius:12px;padding:16px 20px}
+summary{cursor:pointer;font-weight:500;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:"JetBrains Mono",monospace;color:var(--green)}
+details[open] summary::after{content:"−"}
+details p{color:var(--body);margin-top:10px;font-size:15.5px}
+
+/* waitlist */
+.join{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.form{background:var(--panel);border-radius:14px;padding:24px;display:grid;gap:14px}
+.form label{display:grid;gap:6px;font-size:14px;color:var(--body)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{display:flex;align-items:center;gap:8px;background:var(--panel2);padding:9px 12px;border-radius:99px;font-size:14px;color:var(--ink);cursor:pointer}
+.chips input{width:auto;accent-color:var(--green)}
+.ok-msg{display:none;font-family:"JetBrains Mono",monospace;font-size:14px;color:var(--green);line-height:1.7}
+.form.done .fields{display:none}
+.form.done .ok-msg{display:block}
+.fields{display:grid;gap:14px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.err{color:var(--red);font-size:13px;min-height:1em}
+footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--soft);font-size:13.5px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+@media(max-width:960px){
+ .loop{grid-template-columns:1fr 1fr}
+ .case{grid-template-columns:1fr}
+ .stats{grid-template-columns:1fr 1fr}
+ .rule{grid-template-columns:1fr;gap:6px}
+ .plans{grid-template-columns:1fr}
+}
+@media(max-width:760px){
+ nav .links a:not(.cta){display:none}
+ .hero{grid-template-columns:1fr;padding:16px 0 56px}
+ h1{font-size:40px}
+ h2{font-size:30px}
+ .lede{font-size:17px}
+ .quick{flex-direction:column}
+ .term{font-size:11.5px}
+ .log{padding:14px;min-height:0}
+ .loop{grid-template-columns:1fr}
+ .tiers{grid-template-columns:1fr}
+ .join{grid-template-columns:1fr;gap:28px}
+ section.block{padding:56px 0}
+ .stat .v{font-size:30px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav>
+ <a class="logo" href="#"><i></i>loopcast</a>
+ <div class="links"><a href="#loop">How it works</a><a href="#maozai">Maozai log</a><a href="#pricing">Pricing</a><a href="#join" class="cta">Waitlist →</a></div>
+</nav>
+
+<header class="hero">
+ <div>
+  <div class="eyebrow">// for app teams with revenue and no marketer</div>
+  <h1>Your growth marketer runs as a <span>daily loop.</span></h1>
+  <p class="lede">Post → read → rewrite the rules → post again. Loopcast turns your app's own footage into Shorts and Reels every day, and learns what your audience actually watches — and installs.</p>
+  <form class="quick" data-quick>
+   <input type="email" name="email" placeholder="you@yourapp.com" aria-label="Work email" required>
+   <button type="submit">Join waitlist</button>
+  </form>
+  <p class="fine">// first 5 app teams get a free two-week pilot · official APIs only · you approve replies, DMs and spend</p>
+ </div>
+ <div class="term" aria-label="Example of Loopcast's daily log for the Maozai account">
+  <div class="bar"><i></i><i></i><i></i><span>loopcast · @meetmaozai · day 6</span></div>
+  <div class="log" id="log">
+   <div><span class="t">10-25 09:27</span> <span class="g">publish</span> <span class="w">instagram/lunch-watch-phone</span> <span class="t">AI label on</span></div>
+   <div><span class="t">10-25 09:35</span> <span class="g">publish</span> <span class="w">youtube/ears</span> <span class="t">siamese · first watch clip</span></div>
+   <div><span class="t">10-25 09:37</span> <span class="g">publish</span> <span class="w">youtube/mystery-box</span> <span class="t">new format</span></div>
+   <div><span class="t">10-25 20:25</span> <span class="a">read</span> <span class="w">ears</span> → <span class="g">981 views / 11h</span></div>
+   <div><span class="t">10-25 20:25</span> <span class="a">read</span> <span class="w">mochi #4–7</span> → <span class="r">&lt;15 views each</span></div>
+   <div class="rulebox"><span class="a">rule+</span> <span class="w">A cat's first watch clip lifts; repeats stall. Rotate a new face every day. Pause Mochi 7 days.</span></div>
+   <div><span class="t">10-26 01:45</span> <span class="g">publish</span> <span class="w">youtube/golden-face</span> <span class="t">rule applied · new face</span></div>
+   <div><span class="t">10-26 03:20</span> <span class="b">link</span> <span class="w">5 watch Shorts</span> → <span class="t">Apple Watch product page</span></div>
+   <div><span class="t">10-26 11:00</span> <span class="a">total</span> <span class="w">7,110 views · $0 ads</span> <span class="cursor"></span></div>
+  </div>
+ </div>
+</header>
+
+<section class="block" id="loop">
+ <div class="label">// how it works</div>
+ <h2>Six steps, every day. Most tools stop at step three.</h2>
+ <p class="sub">A scheduler waits for you to bring the content. Loopcast makes it, ships it, and follows each post all the way to your store page — then changes what it does tomorrow.</p>
+ <div class="loop">
+  <div class="step"><div class="n">01 plan <span class="state ok">proven on Maozai</span></div><h3>A content matrix</h3><p>Formats × the stage a viewer is in: first seeing you, starting to trust you, ready to install. Each post is tagged so the right numbers judge it.</p></div>
+  <div class="step"><div class="n">02 make <span class="state ok">proven on Maozai</span></div><h3>From your own footage</h3><p>Screen recordings, store screenshots, clips you already have. Original music, AI disclosure on, and two or three openings or covers to test against each other.</p></div>
+  <div class="step"><div class="n">03 post <span class="state wip">moving to official APIs</span></div><h3>To your accounts</h3><p>YouTube, Instagram and Threads first; TikTok and X next. The account is checked before every post.</p></div>
+  <div class="step"><div class="n">04 land <span class="state wip">building</span></div><h3>On the right store page</h3><p>Each kind of clip links to the App Store custom product page that matches it, with a tracking tag per post and per clip.</p></div>
+  <div class="step"><div class="n">05 read <span class="state wip">building</span></div><h3>Every morning</h3><p>Views per post, store page views and downloads per link, all tied back to the clip and version that earned them.</p></div>
+  <div class="step"><div class="n">06 learn <span class="state ok">proven on Maozai</span></div><h3>Rules in plain words</h3><p>Keep, rewrite, retest. Each rule carries its evidence and date, and you can read, edit or veto it. Winners can go to a small ad test — only with your yes.</p></div>
+ </div>
+ <div class="legend"><span><span class="g">●</span> ran on Maozai</span><span><span class="a">●</span> what the pilots add</span></div>
+</section>
+
+<section class="block" id="maozai">
+ <div class="label">// case study · Maozai, a solo-dev iPhone + Apple Watch app</div>
+ <h2>Six days on brand-new accounts. Here is the whole log, including the weak part.</h2>
+ <p class="sub">The agent ran Maozai's YouTube, Instagram, X and Threads from Oct 20 to Oct 26: made every video from the app's own clips, posted it, read the numbers, and rewrote its rules.</p>
+ <div class="stats">
+  <div class="stat"><div class="v mono">7,110</div><div class="k">views across platforms</div></div>
+  <div class="stat"><div class="v mono">$0</div><div class="k">spent on ads</div></div>
+  <div class="stat"><div class="v mono">~60</div><div class="k">posts: 21 Shorts, 20 Reels, X, Threads</div></div>
+  <div class="stat warn"><div class="v mono">14</div><div class="k">first-time downloads in 30 days</div></div>
+ </div>
+ <div class="case">
+  <div class="panel">
+   <h4><span>youtube views per Short</span><span>Oct 20–26</span></h4>
+   <div class="chart" id="chart"></div>
+   <p class="note">Four Shorts made 79% of YouTube's views: Mochi's first three Apple Watch clips and the Siamese's first. Mochi's 4th to 7th got under 15 each. That gap is where the "new face every day" rule came from.</p>
+  </div>
+  <div class="panel">
+   <h4><span>the four that lifted</span><span>6–10 s each</span></h4>
+   <div class="vids">
+    <div class="vid"><video src="assets/pet.mp4" poster="assets/pet-cover.jpg" muted loop playsinline preload="none"></video><span>1,188</span></div>
+    <div class="vid"><video src="assets/crown.mp4" poster="assets/crown-cover.jpg" muted loop playsinline preload="none"></video><span>1,157</span></div>
+    <div class="vid"><video src="assets/chin.mp4" poster="assets/chin-cover.jpg" muted loop playsinline preload="none"></video><span>1,139</span></div>
+    <div class="vid"><video src="assets/ears.mp4" poster="assets/ears-cover.jpg" muted loop playsinline preload="none"></video><span>989</span></div>
+   </div>
+  </div>
+ </div>
+ <div class="rules">
+  <div class="rule"><div class="d">rule · oct 25</div><div class="txt">A cat's first Apple Watch clip lifts; the same cat again doesn't. Put a new face on camera every day.</div><div class="ev">Mochi #1–3: 1,188 / 1,157 / 1,139 · #4–7: under 15 · Siamese #1: 989</div></div>
+  <div class="rule"><div class="d">rule · oct 24</div><div class="txt">Nothing in the frame asks people to download. The store link lives in the description.</div><div class="ev">both Shorts with "App Store" in frame: 2 views each (n = 2)</div></div>
+  <div class="rule"><div class="d">rule · oct 21</div><div class="txt">On X, standalone posts go nowhere. Reply under other people's threads instead.</div><div class="ev">standalone posts: 1–10 views each</div></div>
+  <div class="rule"><div class="d">rule · oct 22</div><div class="txt">Check the signed-in account before every post.</div><div class="ev">one post went out on the founder's personal account</div></div>
+ </div>
+ <div class="honest">
+  <b>// not proven yet</b>
+  <p>Views did not turn into many installs: 14 first-time downloads and 70 store page views in the 30 days to Oct 24, and App Store Connect still says "not enough data" per campaign. Steps 04 and 05 above — matching store pages and per-clip attribution — are what the pilots are for.</p>
+ </div>
+</section>
+
+<section class="block" id="control">
+ <div class="label">// what you stay in charge of</div>
+ <h2>It posts on its own. It never talks or spends for you without asking.</h2>
+ <div class="tiers">
+  <div class="panel auto"><h4><span>runs on its own</span></h4><ul><li>Making videos from footage you've shared</li><li>Routine posts on the platforms you connected</li><li>Reading the numbers and writing rules</li><li>Your weekly report</li></ul></div>
+  <div class="panel yes"><h4><span>waits for your yes</span></h4><ul><li>Replies and comments in your voice</li><li>Direct messages</li><li>Any ad spend, at any amount</li><li>A new format's first post</li></ul></div>
+ </div>
+ <p class="never"><b>never</b>Your passwords. Every platform is connected through its official API or its own delegation (channel manager, Meta partner access). AI-made content is always labelled.</p>
+</section>
+
+<section class="block" id="pricing">
+ <div class="label">// planned pricing · pilots are free</div>
+ <h2>Priced against a part-time marketer, not a scheduler.</h2>
+ <div class="plans">
+  <div class="plan"><div class="nm">starter</div><div class="pr">$49<small>/mo</small></div><div class="for">Try it with a hand on the wheel.</div><ul><li>1 app, 2 platforms</li><li>You approve each post</li><li>Weekly report</li></ul></div>
+  <div class="plan main"><div class="nm">main</div><div class="pr">$299<small>/mo</small></div><div class="for">The daily loop, on autopilot.</div><ul><li>3–4 platforms</li><li>New videos every day</li><li>Rules rewritten daily</li><li>Attribution to downloads and revenue per channel</li></ul></div>
+  <div class="plan"><div class="nm">growth</div><div class="pr">$799<small>+/mo</small></div><div class="for">When it's working and you want more.</div><ul><li>Several apps</li><li>Creator collaborations</li><li>App Store work: custom product pages, featuring nominations</li><li>Ad tests for proven clips</li></ul></div>
+ </div>
+ <p class="fine" style="margin-top:16px">// video generation beyond the plan is sold as credits · prices may change before launch</p>
+</section>
+
+<section class="block" id="faq">
+ <div class="label">// questions</div>
+ <h2>Before you join</h2>
+ <div class="faq">
+  <details open><summary>What do I need to give you?</summary><p>Footage of your app (screen recordings, store screenshots, any clips you have), access to the accounts through each platform's own delegation, and read access to App Store Connect analytics. About 30 minutes to set up.</p></details>
+  <details><summary>Which platforms?</summary><p>YouTube Shorts, Instagram Reels and Threads first. TikTok and X come next; both need extra platform approval or paid API access.</p></details>
+  <details><summary>Will it make my account look like a bot?</summary><p>It posts at a human pace, only content made from your real product, with AI disclosure where a platform asks for it. Replies and messages wait for you.</p></details>
+  <details><summary>Is this only for apps?</summary><p>For now, yes: app teams with revenue and no marketer. The store-page and attribution steps are built around the App Store.</p></details>
+  <details><summary>What does the pilot cost?</summary><p>Nothing. Two weeks, two platforms, a daily log you can read, and a report at the end. If it's worth it, the Main plan is $299/month.</p></details>
+ </div>
+</section>
+
+<section class="block" id="join">
+ <div class="join">
+  <div>
+   <div class="label">// waitlist</div>
+   <h2>Five free pilots for app teams.</h2>
+   <p class="sub">Tell us about your app. If it fits, you'll hear from Will, the solo developer behind Maozai, within a few days.</p>
+  </div>
+  <form class="form" id="waitlist" novalidate>
+   <div class="fields">
+    <label>Work email<input type="email" name="email" placeholder="you@yourapp.com" required></label>
+    <label>Your app's App Store link<input type="url" name="app" placeholder="https://apps.apple.com/app/…"></label>
+    <div><div style="font-size:14px;color:var(--body);margin-bottom:8px">Where do you want to grow?</div>
+     <div class="chips"><label><input type="checkbox" name="platforms" value="youtube">YouTube</label><label><input type="checkbox" name="platforms" value="instagram">Instagram</label><label><input type="checkbox" name="platforms" value="tiktok">TikTok</label><label><input type="checkbox" name="platforms" value="x">X</label><label><input type="checkbox" name="platforms" value="threads">Threads</label></div></div>
+    <label>Who does marketing today?<select name="today"><option value="">Choose one</option><option>Nobody</option><option>Me, when I have time</option><option>A freelancer or agency</option><option>Someone in-house</option></select></label>
+    <label class="hp" aria-hidden="true">Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+    <div class="err" id="err" role="alert"></div>
+    <button type="submit">Join the waitlist</button>
+   </div>
+   <div class="ok-msg" role="status">✓ you're on the list.<br><span class="t">// we'll write from a real inbox, not a sequence.</span></div>
+  </form>
+ </div>
+</section>
+
+<footer><span>Loopcast (working name) · built from the Maozai experiment</span><span class="mono">official APIs only · AI content labelled</span></footer>
+</div>
+
+<script>
+// Submissions go to a Cloudflare Worker that stores them in KV (worker/ in this folder).
+const WAITLIST_ENDPOINT = "https://api.loopcast.dev/waitlist";
+
+const shorts = [
+  ["pet", 1188, 1], ["crown", 1157, 1], ["chin", 1139, 1], ["ears", 989, 1],
+  ["launch", 317], ["tail", 267], ["heart", 245], ["skip-dinner", 214], ["miss-you", 43],
+  ["wrist", 14], ["belly", 13], ["paw", 12], ["pet-till-grumpy", 8], ["back", 4],
+  ["toffee-chin", 3], ["lunch", 3], ["mochi-paw", 2], ["box-toffee", 2]
+];
+const max = shorts[0][1];
+document.getElementById("chart").innerHTML = shorts.map(([n, v, hit]) =>
+  `<div class="${hit ? "hit" : ""}"><span class="nm">${n}</span><span class="tr"><i style="width:${Math.max(v / max * 100, 0.6)}%"></i></span><span class="vv">${v.toLocaleString("en-US")}</span></div>`
+).join("");
+
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// Reveal the hero log one line at a time.
+if (!reduce) {
+  const lines = [...document.querySelectorAll("#log > div")];
+  lines.forEach((l) => l.classList.add("hide"));
+  lines.forEach((l, i) => setTimeout(() => l.classList.remove("hide"), 350 + i * 420));
+}
+
+// Play the case-study clips only while they are on screen.
+if (!reduce && "IntersectionObserver" in window) {
+  const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+    if (e.isIntersecting) e.target.play().catch(() => {}); else e.target.pause();
+  }), { threshold: 0.4 });
+  document.querySelectorAll(".vid video").forEach((v) => io.observe(v));
+}
+
+const isEmail = (s) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
+
+async function submit(data) {
+  if (WAITLIST_ENDPOINT) {
+    const res = await fetch(WAITLIST_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(data) });
+    if (!res.ok) throw new Error("waitlist " + res.status);
+    return;
+  }
+  try {
+    const saved = JSON.parse(localStorage.getItem("loopcast-waitlist") || "[]");
+    saved.push({ ...data, at: new Date().toISOString() });
+    localStorage.setItem("loopcast-waitlist", JSON.stringify(saved));
+  } catch (e) { /* storage unavailable: nothing else to do locally */ }
+}
+
+// The hero form only collects the email, then hands over to the full form.
+document.querySelector("[data-quick]").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const email = e.target.email.value.trim();
+  const full = document.getElementById("waitlist");
+  full.email.value = email;
+  document.getElementById("join").scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
+  (email ? full.app : full.email).focus({ preventScroll: true });
+});
+
+document.getElementById("waitlist").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const f = e.target, err = document.getElementById("err");
+  const data = {
+    email: f.email.value.trim(),
+    app: f.app.value.trim(),
+    platforms: [...f.querySelectorAll("[name=platforms]:checked")].map((c) => c.value),
+    today: f.today.value,
+    website: f.website.value
+  };
+  if (!isEmail(data.email)) { err.textContent = "Please enter a valid email."; f.email.focus(); return; }
+  err.textContent = "";
+  const btn = f.querySelector("button");
+  btn.disabled = true;
+  try {
+    await submit(data);
+    f.classList.add("done");
+  } catch (x) {
+    err.textContent = "That didn't go through. Please try again in a minute.";
+    btn.disabled = false;
+  }
+});
+</script>
+</body>
+</html>
